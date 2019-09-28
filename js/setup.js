@@ -95,9 +95,7 @@ setupFireBall.addEventListener('click', function (evt) {
 });
 
 var onPopupEscPress = function (evt) {
-  if (userName === document.activeElement) {
-    evt;
-  } else if (evt.keyCode === ESC_KEYCODE) {
+  if (evt.keyCode === ESC_KEYCODE && userName !== document.activeElement) {
     closePopup();
   }
 };
