@@ -70,5 +70,5 @@
 
   window.stat = {
     renderStatistics: renderStatistics
-  }
+  };
 })();

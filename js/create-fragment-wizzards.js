@@ -15,7 +15,6 @@
     var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
     var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 
-    var colorize = window.colorize.colorize;
     var COAT_COLORS = window.colorize.COAT_COLORS;
     var EYES_COLORS = window.colorize.EYES_COLORS;
 
