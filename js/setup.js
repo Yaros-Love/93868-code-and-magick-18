@@ -1,16 +1,22 @@
 'use strict';
 
 (function () {
+  var fragment = window.createFragmentWizzards.fragment;
+  var colorize = window.colorize.colorize;
   var setup = document.querySelector('.setup');
   setup.querySelector('.setup-similar').classList.remove('hidden');
 
   var similarListElement = setup.querySelector('.setup-similar-list');
-  similarListElement.appendChild(window.fragmentWizardsArray);
+  similarListElement.appendChild(fragment);
 
   var setupWizard = document.querySelector('.setup-wizard');
   var wizardCoat = setupWizard.querySelector('.wizard-coat');
   var wizardEyes = setupWizard.querySelector('.wizard-eyes');
   var setupFireBall = setup.querySelector('.setup-fireball-wrap');
+
+  colorize(wizardCoat);
+  colorize(wizardEyes);
+  colorize(setupFireBall);
 
   window.setup = {
     setup: setup,
@@ -20,9 +26,6 @@
     setupFireBall: setupFireBall
   };
 
-  window.colorize(wizardCoat);
-  window.colorize(wizardEyes);
-  window.colorize(setupFireBall);
   //
   // var onWizardClick = function (evt, obj, color) {
   //   obj.style.fill = color;

@@ -5,21 +5,24 @@
   var setupClose = document.querySelector('.setup-close');
   var userName = document.querySelector('.setup-user-name');
 
+  var isEscEvent = window.util.isEscEvent;
+  var isEnterEvent = window.util.isEnterEvent;
+  var setup = window.setup.setup;
 
   var onPopupEscPress = function (evt) {
     if (userName !== document.activeElement) {
-      window.util.isEscEvent(evt, closePopup);
+      isEscEvent(evt, closePopup);
     }
   };
 
   var openPopup = function () {
-    window.setup.setup.classList.remove('hidden');
-    window.setup.setup.style = '';
+    setup.classList.remove('hidden');
+    setup.style = '';
     document.addEventListener('keydown', onPopupEscPress);
   };
 
   var closePopup = function () {
-    window.setup.setup.classList.add('hidden');
+    setup.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
@@ -28,7 +31,7 @@
   });
 
   setupOpen.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, openPopup);
+    isEnterEvent(evt, openPopup);
   });
 
   setupClose.addEventListener('click', function () {
@@ -36,11 +39,11 @@
   });
 
   setupClose.addEventListener('keydown', function (evt) {
-    window.util.isEscEvent(evt, closePopup);
-    window.util.isEnterEvent(evt, closePopup);
+    isEscEvent(evt, closePopup);
+    isEnterEvent(evt, closePopup);
   });
 
-  var dialogHandler = window.setup.setup.querySelector('.upload');
+  var dialogHandler = setup.querySelector('.upload');
 
   dialogHandler.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
@@ -66,8 +69,8 @@
         y: moveEvt.clientY
       };
 
-      window.setup.setup.style.top = (window.setup.setup.offsetTop - shift.y) + 'px';
-      window.setup.setup.style.left = (window.setup.setup.offsetLeft - shift.x) + 'px';
+      setup.style.top = (setup.offsetTop - shift.y) + 'px';
+      setup.style.left = (setup.offsetLeft - shift.x) + 'px';
     };
 
     var onMouseUp = function (upEvt) {

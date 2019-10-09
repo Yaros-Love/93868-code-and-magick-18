@@ -1,10 +1,6 @@
 'use strict';
 
-window.fragmentWizardsArray = (function () {
-  var WIZARD_AMOUNT = 4;
-  var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-  var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-
+(function () {
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
@@ -15,13 +11,21 @@ window.fragmentWizardsArray = (function () {
   };
 
   var createWizardsArray = function () {
+    var WIZARD_AMOUNT = 4;
+    var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
+    var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+
+    var colorize = window.colorize.colorize;
+    var COAT_COLORS = window.colorize.COAT_COLORS;
+    var EYES_COLORS = window.colorize.EYES_COLORS;
+
     var wizardsArray = [];
     for (var i = 0; i < WIZARD_AMOUNT; i++) {
       wizardsArray.push(
           {
             name: getRandomItem(WIZARD_NAMES) + ' ' + getRandomItem(WIZARD_SURNAMES),
-            coatColor: getRandomItem(window.colorizeColorArr.COAT_COLORS),
-            eyesColor: getRandomItem(window.colorizeColorArr.EYES_COLORS)
+            coatColor: getRandomItem(COAT_COLORS),
+            eyesColor: getRandomItem(EYES_COLORS)
           }
       );
     }
@@ -44,5 +48,7 @@ window.fragmentWizardsArray = (function () {
     fragment.appendChild(renderWizard(wizards[i]));
   }
 
-  return fragment;
+  window.createFragmentWizzards = {
+    fragment: fragment
+  };
 })();
