@@ -19,8 +19,8 @@
       wizardsArray.push(
           {
             name: getRandomItem(WIZARD_NAMES) + ' ' + getRandomItem(WIZARD_SURNAMES),
-            coatColor: getRandomItem(COAT_COLORS),
-            eyesColor: getRandomItem(EYES_COLORS)
+            colorCoat: getRandomItem(COAT_COLORS),
+            colorEyes: getRandomItem(EYES_COLORS)
           }
       );
     }

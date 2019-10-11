@@ -8,6 +8,9 @@
   var isEscEvent = window.util.isEscEvent;
   var isEnterEvent = window.util.isEnterEvent;
   var setup = window.setup.setup;
+  var save = window.backend.save;
+  var errorHandler = window.setup.errorHandler;
+  var successHandler = window.setup.successHandler;
 
   var onPopupEscPress = function (evt) {
     if (userName !== document.activeElement) {
@@ -90,5 +93,13 @@
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
+  });
+
+  var form = document.querySelector('.setup-wizard-form');
+  form.addEventListener('submit', function (evt) {
+    save(new FormData(form),  function (response) {
+      setup.classList.add('hidden');
+    }, errorHandler)
+    evt.preventDefault();
   });
 })();
