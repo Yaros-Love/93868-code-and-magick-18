@@ -1,26 +1,61 @@
 'use strict';
 
 (function () {
-  var colorize = window.colorize.colorize;
   var insertWizards = window.renderWizard.insertWizards;
-  var wizards = window.wizardArr.wizards;
   var load = window.backend.load;
-  var insertWizards = window.renderWizard.insertWizards;
-  var renderWizard = window.renderWizard.renderWizard;
+  var wizard = window.wizard;
 
   var setup = document.querySelector('.setup');
+  var coatColor;
+  var eyesColor;
+  var wizards = [];
 
-  var setupWizard = document.querySelector('.setup-wizard');
-  var wizardCoat = setupWizard.querySelector('.wizard-coat');
-  var wizardEyes = setupWizard.querySelector('.wizard-eyes');
-  var setupFireBall = setup.querySelector('.setup-fireball-wrap');
+  var getRank = function (wizardItem) {
+    var rank = 0;
 
-  var similarListElement = setup.querySelector('.setup-similar-list');
+    if (wizardItem.colorCoat === coatColor) {
+      rank += 2;
+    }
+    if (wizardItem.colorEyes === eyesColor) {
+      rank += 1;
+    }
+
+    return rank;
+  };
+
+  var namesComparator = function (left, right) {
+    if (left > right) {
+      return 1;
+    } else if (left < right) {
+      return -1;
+    } else {
+      return 0;
+    }
+  };
+
+  var updateWizards = function () {
+    insertWizards(wizards.sort(function (left, right) {
+      var rankDiff = getRank(right) - getRank(left);
+      if (rankDiff === 0) {
+        rankDiff = namesComparator(left.name, right.name);
+      }
+      return rankDiff;
+    }));
+  };
+
+  wizard.onEyesChange = function (color) {
+    eyesColor = color;
+    updateWizards();
+  };
+
+  wizard.onCoatChange = function (color) {
+    coatColor = color;
+    updateWizards();
+  };
 
   var successHandler = function (data) {
-    similarListElement.appendChild(insertWizards(data));
+    wizards = data;
     setup.querySelector('.setup-similar').classList.remove('hidden');
-    console.log(data);
   };
 
   var errorHandler = function () {
@@ -37,17 +72,7 @@
 
   load(successHandler, errorHandler);
 
-  colorize(wizardCoat);
-  colorize(wizardEyes);
-  colorize(setupFireBall);
-
   window.setup = {
-    setup: setup,
-    setupWizard: setupWizard,
-    wizardCoat: wizardCoat,
-    wizardEyes: wizardEyes,
-    setupFireBall: setupFireBall,
-    errorHandler: errorHandler,
-    successHandler: successHandler
+    errorHandler: errorHandler
   };
 })();

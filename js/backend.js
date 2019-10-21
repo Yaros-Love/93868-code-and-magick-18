@@ -2,7 +2,7 @@
 
 (function () {
   var URL_GET = 'https://js.dump.academy/code-and-magick/data';
-  var URl_POST = 'https://js.dump.academy/code-and-magick';
+  var URL_POST = 'https://js.dump.academy/code-and-magick';
 
   var load = function (onLoad, onError) {
     var xhr = new XMLHttpRequest();
@@ -53,7 +53,7 @@
 
     xhr.timeout = 10000;
 
-    xhr.open('POST', URl_POST);
+    xhr.open('POST', URL_POST);
     xhr.send(data);
   };
 
