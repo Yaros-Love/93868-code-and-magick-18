@@ -4,8 +4,8 @@
   var insertWizards = window.renderWizard.insertWizards;
   var load = window.backend.load;
   var wizard = window.wizard;
+  var debounce = window.debounce;
 
-  var setup = document.querySelector('.setup');
   var coatColor;
   var eyesColor;
   var wizards = [];
@@ -43,19 +43,20 @@
     }));
   };
 
-  wizard.onEyesChange = function (color) {
+
+  wizard.onEyesChange = debounce(function (color) {
     eyesColor = color;
     updateWizards();
-  };
+  });
 
-  wizard.onCoatChange = function (color) {
+  wizard.onCoatChange = debounce(function (color) {
     coatColor = color;
     updateWizards();
-  };
+  });
 
   var successHandler = function (data) {
     wizards = data;
-    setup.querySelector('.setup-similar').classList.remove('hidden');
+    updateWizards();
   };
 
   var errorHandler = function () {
