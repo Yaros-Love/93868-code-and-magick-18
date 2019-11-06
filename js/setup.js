@@ -3,10 +3,7 @@
 (function () {
   var colorize = window.colorize.colorize;
   var insertWizards = window.renderWizard.insertWizards;
-  var wizards = window.wizardArr.wizards;
   var load = window.backend.load;
-  var insertWizards = window.renderWizard.insertWizards;
-  var renderWizard = window.renderWizard.renderWizard;
 
   var setup = document.querySelector('.setup');
 
@@ -20,7 +17,6 @@
   var successHandler = function (data) {
     similarListElement.appendChild(insertWizards(data));
     setup.querySelector('.setup-similar').classList.remove('hidden');
-    console.log(data);
   };
 
   var errorHandler = function () {

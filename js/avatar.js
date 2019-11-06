@@ -5,14 +5,14 @@
 
   var fileChooser = document.querySelector('.upload input[type=file]');
   var preview = document.querySelector('.setup-user-pic');
-  var icon = document.querySelector('.setup-open-icon');
+  var iconUser = document.querySelector('.setup-open-icon');
 
 
   fileChooser.addEventListener('change', function () {
     var file = fileChooser.files[0];
     var fileName = file.name.toLowerCase();
 
-    var matches = FILE_TYPES.some(function(item) {
+    var matches = FILE_TYPES.some(function (item) {
       return fileName.endsWith(item);
     });
 
@@ -21,7 +21,7 @@
 
       reader.addEventListener('load', function () {
         preview.src = reader.result;
-        icon.src = reader.result;
+        iconUser.src = reader.result;
       });
 
       reader.readAsDataURL(file);

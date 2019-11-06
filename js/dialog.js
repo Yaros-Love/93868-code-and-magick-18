@@ -10,7 +10,6 @@
   var setup = window.setup.setup;
   var save = window.backend.save;
   var errorHandler = window.setup.errorHandler;
-  var successHandler = window.setup.successHandler;
 
   var onPopupEscPress = function (evt) {
     if (userName !== document.activeElement) {
@@ -97,9 +96,9 @@
 
   var form = document.querySelector('.setup-wizard-form');
   form.addEventListener('submit', function (evt) {
-    save(new FormData(form),  function (response) {
+    save(new FormData(form), function () {
       setup.classList.add('hidden');
-    }, errorHandler)
+    }, errorHandler);
     evt.preventDefault();
   });
 })();
