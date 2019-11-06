@@ -10,13 +10,13 @@
   var eyesColor;
   var wizards = [];
 
-  var getRank = function (wizardItem) {
+  var getRank = function (wizard) {
     var rank = 0;
 
-    if (wizardItem.colorCoat === coatColor) {
+    if (wizard.colorCoat === coatColor) {
       rank += 2;
     }
-    if (wizardItem.colorEyes === eyesColor) {
+    if (wizard.colorEyes === eyesColor) {
       rank += 1;
     }
 
@@ -67,7 +67,7 @@
     node.style.right = 0;
     node.style.fontSize = '30px';
 
-    node.textContent = 'Произошла шибка соединения';
+    node.textContent = 'Произошла ошибка соединения';
     document.body.insertAdjacentElement('afterbegin', node);
   };
 
