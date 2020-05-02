@@ -9,35 +9,40 @@ var TEXT_WIDTH = 40;
 var BAR_GAP = 50;
 var BAR_WIDTH = 40;
 var BAR_HEIGTH = 150;
-var barHiegthStart = (CLOUD_Y + FONT_GAP_UP + FONT_GAP * 4)
+var barHiegthStart = (CLOUD_Y + FONT_GAP_UP + FONT_GAP * 4);
 
 //функция - рисуем облако-вывод результатов
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
-  ctx.fillRect(x, y, CLOUD_WIDGTH, CLOUD_HEIGTH)
+  ctx.fillRect(x, y, CLOUD_WIDGTH, CLOUD_HEIGTH);
 }
 
 //создание отрисовки статистики
 window.renderStatistics = function (ctx, names, times) {
   //рисуем тень
-  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)')
+  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   //рисуем облако
   renderCloud(ctx, CLOUD_X, CLOUD_Y, 'white');
 
   ctx.fillStyle = '#000';
 
   //текст поздравления
-  ctx.font = '16px PT Mono'
+  ctx.font = '16px PT Mono';
   ctx.fillText('Ура вы победили!', CLOUD_X + GAP + FONT_GAP, CLOUD_Y + GAP + FONT_GAP_UP);
-  ctx.fillText('Список результатов:', CLOUD_X + GAP + FONT_GAP, CLOUD_Y + GAP + FONT_GAP_UP * 2)
+  ctx.fillText('Список результатов:', CLOUD_X + GAP + FONT_GAP, CLOUD_Y + GAP + FONT_GAP_UP * 2);
 
   //нахождения максимального числа очков
   var maxScore = 0;
   for (var k = 0; k < times.length; k++) {
     if (times[k] > maxScore) {
-      maxScore = times[k]
+      maxScore = times[k];
     }
   }
+
+//функция мат рандома для насыщенности hsl
+var getRandomArbitrary = function (min, max) {
+  return Math.random() * (max - min) + min + '%';
+}
 
   //цикл отрисовки статистики
   for (var i = 0; i < names.length; i++) {
@@ -49,7 +54,7 @@ window.renderStatistics = function (ctx, names, times) {
       ctx.fillText(Math.round(times[i]), CLOUD_X + GAP + FONT_GAP + (TEXT_WIDTH + BAR_GAP) * i, barHiegthStart + BAR_HEIGTH - mlsecToPicks - GAP);
       ctx.fillText(names[i], CLOUD_X + GAP + FONT_GAP + (TEXT_WIDTH + BAR_GAP) * i, CLOUD_HEIGTH - CLOUD_Y);
     } else {
-      ctx.fillStyle = 'rgba(219, 2, 247, ' + Math.random() + ')';
+      ctx.fillStyle = 'hsl(300, ' + getRandomArbitrary(0, 100) + ', 50% )';
       var mlsecToPicks = (BAR_HEIGTH * times[i]) / maxScore
       ctx.fillRect(CLOUD_X + GAP + FONT_GAP + (TEXT_WIDTH + BAR_GAP) * i, barHiegthStart + BAR_HEIGTH - mlsecToPicks, BAR_WIDTH, mlsecToPicks);
       ctx.fillStyle = '#000';
