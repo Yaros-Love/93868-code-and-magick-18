@@ -11,13 +11,13 @@ console.log(templateWizard);
 var wizardList = document.querySelector('.setup-similar-list');
 
 //массив имен
-var names = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
+var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 //массив фамилий
-var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 //массив цветов мантии
-var colorRoba = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var COLOR_ROBA = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 //массив цветов глаз
-var colorEyes = ['black', 'red', 'blue', 'darkmagenta', 'crimson'];
+var COLOR_EYES = ['black', 'red', 'blue', 'darkmagenta', 'crimson'];
 
 //ф-я выдачи рандомного значения из массива хар-к перса
 var randomItem = function (arrayItems) {
@@ -49,4 +49,4 @@ var creatWizards = function (playersArray) {
     wizardList.appendChild(wizardItem)
   }
 }
-creatWizards(creationPlayers(names,surnames,colorRoba,colorEyes))
+creatWizards(creationPlayers(NAMES,SURNAMES,COLOR_ROBA,COLOR_EYES))
