@@ -1,11 +1,9 @@
 var setupModule = document.querySelector('.setup');
-setupModule.classList.remove('hidden');
 
 document.querySelector('.setup-similar').classList.remove('hidden');
 
 //находим шаблон
 var templateWizard = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
-console.log(templateWizard);
 
 //находим элемент-список персов
 var wizardList = document.querySelector('.setup-similar-list');
@@ -18,6 +16,7 @@ var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Валь
 var COLOR_ROBA = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 //массив цветов глаз
 var COLOR_EYES = ['black', 'red', 'blue', 'darkmagenta', 'crimson'];
+var COLOR_FIREBALL = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
 //ф-я выдачи рандомного значения из массива хар-к перса
 var randomItem = function (arrayItems) {
@@ -25,7 +24,7 @@ var randomItem = function (arrayItems) {
 }
 
 //ф-я создания массива с 4мя рандомными персами
-var creationPlayers = function (nameArray, surnameArray,robaArray,eyesArray) {
+var creationPlayers = function (nameArray, surnameArray, robaArray, eyesArray) {
   var playersCollection = [];
   for (i = 0; i < 4; i++) {
     var player = {};
@@ -35,7 +34,6 @@ var creationPlayers = function (nameArray, surnameArray,robaArray,eyesArray) {
     player.eyesColor = randomItem(eyesArray);
     playersCollection.push(player);
   }
-  console.log(playersCollection)
   return playersCollection
 }
 
@@ -49,4 +47,89 @@ var creatWizards = function (playersArray) {
     wizardList.appendChild(wizardItem)
   }
 }
-creatWizards(creationPlayers(NAMES,SURNAMES,COLOR_ROBA,COLOR_EYES))
+
+creatWizards(creationPlayers(NAMES, SURNAMES, COLOR_ROBA, COLOR_EYES))
+
+//события и валидация
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = document.querySelector('.setup-close');
+var userName = document.querySelector('.setup-user-name');;
+
+
+//закрыть модуль по нажатию esc и не закрывать, если input в фокусе
+var onPopupEscPress = function (evt) {
+  if (userName !== document.activeElement) {
+    if (evt.keyCode === ESC_KEYCODE) {
+      closePopup();
+    }
+  }
+  else {
+    return;
+  }
+};
+
+var openPopup = function () {
+  setupModule.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function () {
+  setupModule.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+
+//слушатель, открыть по нажатию аватарки .setup-open
+setupOpen.addEventListener('click', function () {
+  openPopup()
+});
+
+//слушатель, закрыть по нажатию на .setup-close
+setupClose.addEventListener('click', function () {
+  closePopup()
+});
+
+//слушатель, открыть по enter
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup()
+  }
+});
+
+// слушатель, закрыть по enter
+setupClose.addEventListener('keydown', function (evt) {
+if (evt.keyCode === ENTER_KEYCODE) {
+  closePopup()
+}
+});
+
+//ф-я изменения цвета элементов
+var changeColor = function (wizardElem, someArray) {
+  wizardElem.style.fill = randomItem(someArray);
+}
+
+// элемент с магом
+var setupWizard = document.querySelector('.setup-wizard');
+//элемент мантии
+var wizardCoat = setupWizard.querySelector('.wizard-coat');
+// элемент глаз
+var wizardEyes = setupWizard.querySelector('.wizard-eyes');
+// элемент фаерболла
+var wizardFireball = document.querySelector('.setup-fireball-wrap');
+
+setupWizard.addEventListener('click', function (evt) {
+  if (evt.target === wizardCoat) {
+    changeColor(wizardCoat, COLOR_ROBA);
+    console.log(wizardFireball)
+  }
+  if (evt.target === wizardEyes) {
+    changeColor(wizardEyes, COLOR_EYES);
+    console.log('click')
+  }
+});
+
+wizardFireball.addEventListener('click', function (){
+  wizardFireball.style.background = randomItem(COLOR_FIREBALL);
+})
