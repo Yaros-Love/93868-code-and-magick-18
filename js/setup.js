@@ -17,16 +17,17 @@ var COLOR_ROBA = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)
 //массив цветов глаз
 var COLOR_EYES = ['black', 'red', 'blue', 'darkmagenta', 'crimson'];
 var COLOR_FIREBALL = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
-
+//количество персонажей
+var playersCount = 4;
 //ф-я выдачи рандомного значения из массива хар-к перса
 var randomItem = function (arrayItems) {
   return arrayItems[Math.round(Math.random() * (arrayItems.length - 1 - 0) + 0)];
 }
 
 //ф-я создания массива с 4мя рандомными персами
-var creationPlayers = function (nameArray, surnameArray, robaArray, eyesArray) {
+var createPlayers = function (nameArray, surnameArray, robaArray, eyesArray) {
   var playersCollection = [];
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < playersCount; i++) {
     var player = {};
     player.name = randomItem(nameArray);
     player.surname = randomItem(surnameArray);
@@ -36,26 +37,28 @@ var creationPlayers = function (nameArray, surnameArray, robaArray, eyesArray) {
   }
   return playersCollection
 }
-
+var players = createPlayers(NAMES, SURNAMES, COLOR_ROBA, COLOR_EYES);
 //функция добавления шаблона с персами в разметку
-var creatWizards = function (playersArray) {
+var createWizards = function (playersArray) {
   for (var i = 0; i < playersArray.length; i++) {
     var wizardItem = templateWizard.cloneNode(true);
     wizardItem.querySelector('.setup-similar-label').textContent = playersArray[i].name;
     wizardItem.querySelector('.wizard-coat').style.fill = playersArray[i].coatColor;
     wizardItem.querySelector('.wizard-eyes').style.fill = playersArray[i].eyesColor;
-    wizardList.appendChild(wizardItem)
+    wizardList.appendChild(wizardItem);
   }
 }
 
-creatWizards(creationPlayers(NAMES, SURNAMES, COLOR_ROBA, COLOR_EYES))
+var wizards = createWizards(players);
 
+
+// /********************************************************************************
 //события и валидация
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = document.querySelector('.setup-close');
-var userName = document.querySelector('.setup-user-name');;
+var userName = document.querySelector('.setup-user-name');
 
 
 //закрыть модуль по нажатию esc и не закрывать, если input в фокусе
