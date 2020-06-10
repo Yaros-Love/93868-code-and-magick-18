@@ -16,6 +16,8 @@
 
   // ссылки на елементы ДОМ
   var setupElement = document.querySelector('.setup');
+  var setupElementY = 80; //положение по Y, в px
+  var setupElementX = 50; //положение по X, в %
   var setupSimilarElem = document.querySelector('.setup-similar'); //блок с похожими магами
   var setupSimilarList = document.querySelector('.setup-similar-list'); //элемент с похожими магами
   var setupOpenElem = document.querySelector('.setup-open'); //элемент настроек персонажа
@@ -42,6 +44,8 @@
     ESC_KEYCODE: ESC_KEYCODE,
     ENTER_KEYCODE: ENTER_KEYCODE,
     setupElement: setupElement,
+    setupElementY : setupElementY,
+    setupElementX : setupElementX,
     setupSimilarElem: setupSimilarElem,
     setupSimilarList: setupSimilarList,
     setupOpenElem: setupOpenElem,

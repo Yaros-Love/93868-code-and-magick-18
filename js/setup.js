@@ -3,6 +3,8 @@
 var setup = function () {
   //события и валидация
 
+
+
   //закрыть модуль по нажатию esc и не закрывать, если input в фокусе
   var onPopupEscPress = function (evt) {
     if (window.util.setupUserName !== document.activeElement) {
@@ -23,6 +25,9 @@ var setup = function () {
   var closePopup = function () {
     window.util.setupElement.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
+    //возвращаем изначалное положение окна настроек
+    window.util.setupElement.style.top = window.util.setupElementY + 'px';
+    window.util.setupElement.style.left = window.util.setupElementX + '%';
   };
 
 
