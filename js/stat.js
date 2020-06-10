@@ -1,3 +1,6 @@
+'use strict'
+//модуль start, рендер статистики
+var start = function() {
 var CLOUD_WIDGTH = 420;
 var CLOUD_HEIGTH = 270;
 var CLOUD_X = 100;
@@ -29,7 +32,7 @@ window.renderStatistics = function (ctx, names, times) {
   //текст поздравления
   ctx.font = '16px PT Mono';
   ctx.fillText('Ура вы победили!', CLOUD_X + GAP + FONT_GAP, CLOUD_Y + GAP + FONT_GAP_UP);
-  ctx.fillText('Список результатов:', CLOUD_X + GAP + FONT_GAP, CLOUD_Y + GAP + FONT_GAP_UP * 2);
+  ctx.fillText('Список результатов:', CLOUD_X + GAP + FONT_GAP, CLOUD_Y + GAP + FONT_GAP_UP + FONT_GAP_UP);
 
   //нахождения максимального числа очков
   var maxScore = 0;
@@ -39,12 +42,8 @@ window.renderStatistics = function (ctx, names, times) {
     }
   }
 
-//функция мат рандома для насыщенности hsl
-var getRandomArbitrary = function (min, max) {
-  return Math.random() * (max - min) + min + '%';
-}
 
-  //цикл отрисовки статистики
+  //отрисовка статистики
   for (var i = 0; i < names.length; i++) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)'
@@ -54,7 +53,7 @@ var getRandomArbitrary = function (min, max) {
       ctx.fillText(Math.round(times[i]), CLOUD_X + GAP + FONT_GAP + (TEXT_WIDTH + BAR_GAP) * i, barHiegthStart + BAR_HEIGTH - mlsecToPicks - GAP);
       ctx.fillText(names[i], CLOUD_X + GAP + FONT_GAP + (TEXT_WIDTH + BAR_GAP) * i, CLOUD_HEIGTH - CLOUD_Y);
     } else {
-      ctx.fillStyle = 'hsl(300, ' + getRandomArbitrary(0, 100) + ', 50% )';
+      ctx.fillStyle = 'hsl(300, ' + window.util.getRandomItemMinMax(0, 100) + '%, 50% )';
       var mlsecToPicks = (BAR_HEIGTH * times[i]) / maxScore
       ctx.fillRect(CLOUD_X + GAP + FONT_GAP + (TEXT_WIDTH + BAR_GAP) * i, barHiegthStart + BAR_HEIGTH - mlsecToPicks, BAR_WIDTH, mlsecToPicks);
       ctx.fillStyle = '#000';
@@ -63,3 +62,6 @@ var getRandomArbitrary = function (min, max) {
     }
   }
 }
+}
+
+start();
