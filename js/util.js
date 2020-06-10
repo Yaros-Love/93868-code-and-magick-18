@@ -25,6 +25,7 @@
   var wizardCoatElem = setupWizardElem.querySelector('.wizard-coat'); //элемент мантии
   var wizardEyesElem = setupWizardElem.querySelector('.wizard-eyes'); //элемент глаз
   var fireballWrapElem = document.querySelector('.setup-fireball-wrap'); //элемент фаерболла
+  var dialogHandle = document.querySelector('.upload'); //иконка в окне настроек
 
   //данные для рендера магов
   var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
@@ -50,6 +51,7 @@
     wizardCoatElem: wizardCoatElem,
     wizardEyesElem: wizardEyesElem,
     fireballWrapElem: fireballWrapElem,
+    dialogHandle : dialogHandle,
     NAMES: NAMES,
     SURNAMES: SURNAMES,
     COLOR_ROBA: COLOR_ROBA,
