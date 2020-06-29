@@ -2,6 +2,8 @@
 
 //модуль dialog
 (function () {
+  var setupElement = document.querySelector('.setup');
+
 window.util.dialogHandle.addEventListener('mousedown', function (evt) {
   evt.preventDefault()
 
@@ -26,8 +28,8 @@ window.util.dialogHandle.addEventListener('mousedown', function (evt) {
       y: moveEvt.clientY
     };
     //сместим пложение элемента на разницу изм-я положения мыши
-    window.util.setupElement.style.top = (window.util.setupElement.offsetTop - shift.y) + 'px';
-    window.util.setupElement.style.left = (window.util.setupElement.offsetLeft - shift.x) + 'px';
+    setupElement.style.top = (setupElement.offsetTop - shift.y) + 'px';
+    setupElement.style.left = (setupElement.offsetLeft - shift.x) + 'px';
   };
 
   var dragged = false;

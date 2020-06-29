@@ -1,14 +1,18 @@
-'use strict'
+'use strict';
+
 //модуль setup
-var setup = function () {
+(function () {
+  var setupElement = document.querySelector('.setup');
+var ESC_KEYCODE = window.const.ESC_KEYCODE;
+var ENTER_KEYCODE = window.const.ENTER_KEYCODE;
+var SETUP_ELEM_Y = window.const.SETUP_ELEM_Y; //положение по Y, в px
+var SETUP_ELEM_X = window.const.SETUP_ELEM_X; //положение по X, в %
+
   //события и валидация
-
-
-
   //закрыть модуль по нажатию esc и не закрывать, если input в фокусе
   var onPopupEscPress = function (evt) {
     if (window.util.setupUserName !== document.activeElement) {
-      if (evt.keyCode === window.util.ESC_KEYCODE) {
+      if (evt.keyCode === ESC_KEYCODE) {
         closePopup();
       }
     }
@@ -18,16 +22,16 @@ var setup = function () {
   };
 
   var openPopup = function () {
-    window.util.setupElement.classList.remove('hidden');
+    setupElement.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
   };
 
   var closePopup = function () {
-    window.util.setupElement.classList.add('hidden');
+    setupElement.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
     //возвращаем изначалное положение окна настроек
-    window.util.setupElement.style.top = window.util.setupElementY + 'px';
-    window.util.setupElement.style.left = window.util.setupElementX + '%';
+    setupElement.style.top = SETUP_ELEM_Y + 'px';
+    setupElement.style.left = SETUP_ELEM_X + '%';
   };
 
 
@@ -43,14 +47,14 @@ var setup = function () {
 
   //слушатель, открыть по enter
   window.util.setupOpenElem.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === window.util.ENTER_KEYCODE) {
+    if (evt.keyCode === ENTER_KEYCODE) {
       openPopup()
     }
   });
 
   // слушатель, закрыть по enter
   window.util.setupCloseElem.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === window.util.ENTER_KEYCODE) {
+    if (evt.keyCode === ENTER_KEYCODE) {
       closePopup()
     }
   });
@@ -77,6 +81,6 @@ var setup = function () {
   window.util.fireballWrapElem.addEventListener('click', function () {
     changeColor(window.util.fireballWrapElem, window.util.COLOR_FIREBALL)
   })
-}
+})();
 
-setup();
+
