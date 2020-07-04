@@ -3,8 +3,9 @@
 //модуль dialog
 (function () {
   var setupElement = document.querySelector('.setup');
+  var dialogHandle = document.querySelector('.upload'); //иконка в окне настроек
 
-window.util.dialogHandle.addEventListener('mousedown', function (evt) {
+dialogHandle.addEventListener('mousedown', function (evt) {
   evt.preventDefault()
 
   //начальные координаты
@@ -45,9 +46,9 @@ window.util.dialogHandle.addEventListener('mousedown', function (evt) {
     if (dragged) {
       var onClickPreventDefault = function (evt) {
         evt.preventDefault();
-        window.util.dialogHandle.removeEventListener('click', onClickPreventDefault)
+        dialogHandle.removeEventListener('click', onClickPreventDefault)
       };
-      window.util.dialogHandle.addEventListener('click', onClickPreventDefault);
+      dialogHandle.addEventListener('click', onClickPreventDefault);
     }
   };
 
