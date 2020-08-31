@@ -55,13 +55,6 @@
   })
 
 
-
-
-
-
-
-
-
   //ф-я выводит сообщение об ошибке
   var onErrorLoad = function (message) {
     console.error(message);

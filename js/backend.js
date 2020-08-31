@@ -5,6 +5,7 @@
   var setupWizardForm = document.querySelector('.setup-wizard-form');//форма настройки персонажа
   var setupElement = document.querySelector('.setup');
   var URL = 'https://javascript.pages.academy/code-and-magick/data';
+  // 'javascript.pages.academy/code-and-magick/data';
   var URL_POST = 'https://javascript.pages.academy/code-and-magick';
   var wizards = []
 
